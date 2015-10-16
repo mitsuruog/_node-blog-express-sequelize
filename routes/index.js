@@ -3,14 +3,15 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  //res.render('index', { title: 'Express' });
-  res.render('jade-example', {
+  res.render('index', {
     title: 'Express',
-    author: {
-      twitter: '@mitsuruog',
-      name: 'mitsuruog'
-    },
-    tags: ['express', 'node', 'javascript']
+    articles: [{
+      title: 'Mastering Node',
+      slug: 'mastering-node'
+    }, {
+      title: 'Practical Node.js',
+      slug: 'practical-nodejs'
+    }]
   });
 });
 

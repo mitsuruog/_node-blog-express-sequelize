@@ -1,5 +1,14 @@
 extends layout
 
+block page
+  - var menu = "index"
 block content
-  h1= title
-  p Welcome to #{title}
+  if(articles.length === 0)
+    | There is no published content yet :(. 
+    a(href="/login") login 
+    | to post and publish.
+  else
+    each article, index in articles
+      div
+        h2
+          a(href="/articles/#{article.slug}")= article.title
