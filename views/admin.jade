@@ -21,7 +21,7 @@ block content
             tr(data-id="#{article._id}", class="!article.published")
               td.action
                 button.btn.btn-danger.btn-sm.remove(type="button")
-                  span.glyphicon.glyphicon-remove(title="Remove")
+                  span.glyphicon.glyphicon-remove(title="Remove", ng-click="removeArticle('#{article._id}')")
               td.action
                 button.btn.btn-danger.btn-sm.publish(type="button")
                   span.glyphicon(class=(article.published)?"glyphicon-pause":"glyphicon-play", title=(article.published)?"Unpublish":"Publish")
