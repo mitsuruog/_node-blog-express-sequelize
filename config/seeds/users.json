@@ -1,0 +1,9 @@
+[{
+  "email": "mitsuru.ogawa.jp@gmail.com",
+  "admin": true,
+  "password": "password"
+}, {
+  "email": "test@test.com",
+  "admin": false,
+  "password": "test"
+}]
