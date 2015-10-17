@@ -4,7 +4,7 @@ block page
   - var menu = "admin" 
  
 block content
-  .admin
+  .admin(ng-app="app", ng-controller="AdminController")
     if(!articles || articles.length === 0)
       p
         | Nothing to display. Add a new 
