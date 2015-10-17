@@ -17,6 +17,17 @@ router.get('/', function(req, res, next) {
     });
   });
 });
+
+router.get('/admin', function(req, res) {
+  req.collections.articles.find({}, {
+    sort: {
+      _id: -1
+    }
+  }).toArray((err, articles) => {
+    if(err) return next(err);
+    res.render('admin', {
+      articles: articles
+    });
   });
 });
 
