@@ -31,6 +31,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// TODO
+// 全リクエストのたびにmondodbの中身をチェックしているけど
+// ここでやるべきかは再考の余地あり
+// というか動作してない！？
+app.use(function(req, res, next) {
+  if(!collections.articles || !collections.users) {
+    return next(new Error('No collections :('));
+  }
+  req.collections = collections;
+  return next();
+});
 
 // Page & REST API Routes
 require('./routes')(app);
