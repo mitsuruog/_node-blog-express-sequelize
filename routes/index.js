@@ -31,4 +31,8 @@ router.get('/admin', function(req, res) {
   });
 });
 
+router.get('/new-post', function(req, res) {
+  res.render('post');
+});
+
 module.exports = router;
