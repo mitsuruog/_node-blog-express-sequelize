@@ -11,6 +11,6 @@ exports.update = function(req, res) {
 
 exports.remove = function(req, res) {
   req.collections.articles.removeById(req.params.id, (err) => {
-    res.send(204);
+    res.sendStatus(204);
   });
 }
