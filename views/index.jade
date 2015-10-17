@@ -3,7 +3,7 @@ extends layout
 block page
   - var menu = "index"
 block content
-  if(articles.length === 0)
+  if(!articles || articles.length === 0)
     | There is no published content yet :(. 
     a(href="/login") login 
     | to post and publish.

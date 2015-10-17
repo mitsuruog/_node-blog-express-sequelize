@@ -5,7 +5,7 @@ block page
  
 block content
   .admin
-    if(articles.length === 0)
+    if(!articles || articles.length === 0)
       p
         | Nothing to display. Add a new 
         a(href="/post") article
