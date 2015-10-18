@@ -1,4 +1,5 @@
 var express = require('express');
+var auth = require('../routes/auth/auth.service');
 
 var router = express.Router();
 
@@ -18,7 +19,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/admin', function(req, res) {
+router.get('/admin', auth.authorize, function(req, res) {
   req.collections.articles.find({}, {
     sort: {
       _id: -1
@@ -31,7 +32,7 @@ router.get('/admin', function(req, res) {
   });
 });
 
-router.get('/new-post', function(req, res) {
+router.get('/new-post', auth.authorize, function(req, res) {
   res.render('post');
 });
 

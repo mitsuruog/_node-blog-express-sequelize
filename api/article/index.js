@@ -2,12 +2,13 @@
 
 var express = require('express');
 var controller = require('./article.controller');
+var auth = require('../../routes/auth/auth.service');
 
 var router = express.Router();
 
-router.get('/', controller.findAll);
-router.post('/', controller.create);
-router.put('/:id', controller.update);
-router.delete('/:id', controller.remove);
+router.get('/', auth.authorize, controller.findAll);
+router.post('/', auth.authorize, controller.create);
+router.put('/:id', auth.authorize, controller.update);
+router.delete('/:id', auth.authorize, controller.remove);
 
 module.exports = router;
