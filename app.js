@@ -49,6 +49,14 @@ app.use(function(req, res, next) {
   return next();
 });
 
+app.use(function(res, req, next) {
+  // サーバー側でSessionを見て管理者判定する
+  if(req.session && req.session.admin) {
+    app.locals.admin = true;
+  }
+  next();
+});
+
 // Page & REST API Routes
 require('./routes')(app);
 
