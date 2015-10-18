@@ -5,7 +5,7 @@ console.log('I am admin :).');
 
   angular.module('app', []).controller('AdminController', AdminController);
 
-  function AdminController($scope, $http, $window) {
+  function AdminController($scope, $http) {
 
     $scope.removeArticle = removeArticle;
 
@@ -23,10 +23,10 @@ console.log('I am admin :).');
     function removeArticle(id) {
       $http({
         method: 'DELETE',
-        url: '/api/articles/' + id
+        url: '/api/articles/' + article._id
       }).then(function(response){
-        // 削除が成功した場合は、画面をリフレッシュする
-        $window.location.reload();
+        var index = $scope.articles.indexOf(article);
+        $scope.articles.splice(index, 1);
       });
     }
 
