@@ -20,16 +20,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/admin', auth.authorize, function(req, res) {
-  req.collections.articles.find({}, {
-    sort: {
-      _id: -1
-    }
-  }).toArray((err, articles) => {
-    if(err) return next(err);
-    res.render('admin', {
-      articles: articles
-    });
-  });
+  res.render('admin');
 });
 
 router.get('/new-post', auth.authorize, function(req, res) {

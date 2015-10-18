@@ -9,6 +9,15 @@ console.log('I am admin :).');
 
     $scope.removeArticle = removeArticle;
 
+    // 初期化
+    getAllArticles().then(function(response) {
+      if(response && response.data) {
+        $scope.articles = response.data.articles;
+      } else {
+         console.log('Invalid response data. -> ' + response);
+      }
+    });
+
     ///////////
 
     function removeArticle(id) {
@@ -21,6 +30,12 @@ console.log('I am admin :).');
       });
     }
 
+    function getAllArticles() {
+      return $http({
+        url: '/api/articles'
+      });
+    }
+    
   }
 
 })();
