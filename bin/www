@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('../config/express');
 var debug = require('debug')('node-sample-blog:server');
 var http = require('http');
 
