@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "node ./bin/www",
     "import-users": "mongoimport --host 192.168.99.100 --db blog --collection users --file config/seeds/users.json --jsonArray",
     "import-articles": "mongoimport --host 192.168.99.100 --db blog --collection articles --file config/seeds/articles.json --jsonArray"
   },
