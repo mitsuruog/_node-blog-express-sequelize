@@ -1,7 +1,7 @@
 [{
-  "email": "mitsuru.ogawa.jp@gmail.com",
+  "email": "admin@admin.com",
   "admin": true,
-  "password": "password"
+  "password": "admin"
 }, {
   "email": "test@test.com",
   "admin": false,
