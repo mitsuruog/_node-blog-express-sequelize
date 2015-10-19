@@ -7,6 +7,7 @@ console.log('I am admin :).');
 
   function AdminController($scope, $http) {
 
+    $scope.togglePublishingState = togglePublishingState;
     $scope.removeArticle = removeArticle;
 
     // 初期化
@@ -20,7 +21,21 @@ console.log('I am admin :).');
 
     ///////////
 
-    function removeArticle(id) {
+    function togglePublishingState(article) {
+      $http({
+        method: 'PUT',
+        url: '/api/articles/' + article._id
+      }).then(function(response){
+        if(response && response.data) {
+          var index = $scope.articles.indexOf(article);
+          $scope.articles[index] = response.data.article;
+        } else {
+           console.log('Invalid response data. -> ' + response);
+        }
+      });
+    }
+
+    function removeArticle(article) {
       $http({
         method: 'DELETE',
         url: '/api/articles/' + article._id
@@ -35,7 +50,7 @@ console.log('I am admin :).');
         url: '/api/articles'
       });
     }
-    
+
   }
 
 })();
