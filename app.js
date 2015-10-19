@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 var mongoskin = require('mongoskin');
-var dbUrl = process.env.MONGO_URL || 'mongodb://192.168.99.100:27017/blog';
+var dbUrl = process.env.MONGOLAB_URI || 'mongodb://192.168.99.100:27017/blog';
 var db = mongoskin.db(dbUrl, {
   safe: true
 });
