@@ -3,6 +3,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
@@ -24,7 +25,11 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use(session({
   secret: process.env.SESSION_SECRET || 'session-secret',
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+  store: new RedisStore({
+    url: process.env.REDIS_URL || 'redis://192.168.99.100:6379',
+    db: 1
+  })
 }));
 
 // Persistent
