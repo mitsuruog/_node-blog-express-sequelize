@@ -4,7 +4,7 @@ exports.login = function(req, res) {
   res.render('login');
 }
 
-exports.authenticate = function(req, res) {
+exports.authenticate = function(req, res, next) {
   if(!req.body.email
     || !req.body.password) {
     return res.render('login', {
