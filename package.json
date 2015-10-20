@@ -18,7 +18,7 @@
     "express-session": "^1.11.3",
     "jade": "~1.11.0",
     "mongodb": "^2.0.46",
-    "mongoskin": "^2.0.3",
+    "mongoose": "^4.1.12",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0"
   },
