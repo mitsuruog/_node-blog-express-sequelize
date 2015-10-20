@@ -2,7 +2,7 @@
 
 var express = require('express');
 var controller = require('./article.controller');
-var auth = require('../../controllers/auth/auth.service');
+var auth = require('../../../config/middlewares/authorization');
 
 var router = express.Router();
 
