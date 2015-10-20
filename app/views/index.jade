@@ -1,0 +1,14 @@
+extends layout
+
+block page
+  - var menu = "index"
+block content
+  if(!articles || articles.length === 0)
+    | There is no published content yet :(. 
+    a(href="/auth/login") login 
+    | to post and publish.
+  else
+    each article, index in articles
+      div
+        h2
+          a(href="/articles/#{article.slug}")= article.title
