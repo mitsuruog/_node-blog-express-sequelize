@@ -1,10 +1,5 @@
 'use strict';
 
-exports.post = function(req, res) {
-}
-
-exports.admin = function(req, res) {
-}
 
 exports.create = function(req, res, next) {
   if(!req.body.title ||

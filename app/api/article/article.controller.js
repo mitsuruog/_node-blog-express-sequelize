@@ -13,9 +13,6 @@ exports.findAll = function(req, res, next) {
   });
 }
 
-exports.create = function(req, res) {
-}
-
 exports.update = function(req, res, next) {
   req.collections.articles.findById(req.params.id, (err, article) => {
     if(err) return next(err);
