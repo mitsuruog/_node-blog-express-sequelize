@@ -13,8 +13,7 @@ var ArticleSchema = new Schema({
   published: {
     type: Boolean,
     default: false
-  },
-  slug: String
+  }
 });
 
 //////////// Virtuals
