@@ -6,7 +6,9 @@ block page
 block content
   .col-md-4.col-md-offset-4
     h2 Log in
-    div= error
+    // [MEMO] flashメッセージはsessionに蓄積されるため、shift()することで表示する際に削除する
+    while message = flash.shift()
+      p= message.message
     div
       form(action="/auth/login", method="POST")
         p

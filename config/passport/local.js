@@ -6,21 +6,18 @@ module.exports = new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password'
 }, (email, password, done) => {
-
   User.findOne({
       email: email
     })
     .exec()
     .then((user) => {
       if (!user || !user.authenticate(password)) {
-        return done(null, false, {
-          error: 'Invalid password'
-        });
+        return done(null, null, 'Invalid email or password');
       } else {
         return done(null, user);
       }
     }, (err) => {
-      done(err);
+      return done(err);
     });
 
 });

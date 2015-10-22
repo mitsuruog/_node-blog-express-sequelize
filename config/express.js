@@ -32,6 +32,7 @@ app.use(session({
     db: 1
   })
 }));
+app.use(require('flash')());
 
 // Persistent
 require('./db')(app);
