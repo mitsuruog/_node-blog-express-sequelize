@@ -10,7 +10,7 @@ router.get('/login', controller.login);
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/admin',
-  failureRedirect: '/login',
+  failureRedirect: '/auth/login',
   failureFlash: 'Invalid email or password.'
 }));
 
