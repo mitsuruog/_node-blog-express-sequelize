@@ -6,6 +6,7 @@ var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
 
 var app = express();
 
@@ -34,6 +35,13 @@ app.use(session({
 
 // Persistent
 require('./db')(app);
+
+// passport settings
+require('./passport')(app);
+
+// use passport session
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Page & REST API Routes
 require('./routes')(app);
