@@ -29,6 +29,13 @@ UserSchema
 
 //////////// Instance Methods
 
+UserSchema.methods = {
+  authenticate(password) {
+    // TODO 本当はパスワードハッシュ化したほうがいいよ。。。
+    return this.password === password;
+  }
+};
+
 //////////// Static Methods
 
 module.exports = mongoose.model('User', UserSchema);
