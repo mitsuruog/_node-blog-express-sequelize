@@ -1,11 +1,10 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var dbUrl = process.env.MONGOLAB_URI || 'mongodb://192.168.99.100:27017/blog';
 
-mongoose.connect(dbUrl);
+module.exports = function(app, config) {
 
-module.exports = function(app) {
+  mongoose.connect(config.mongo.uri);
 
   app.use(function(res, req, next) {
     // サーバー側でSessionを見て管理者判定する

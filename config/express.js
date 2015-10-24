@@ -22,21 +22,21 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser(process.env.COOKIE_SECRET || 'cookie-secret'));
+app.use(cookieParser(config.secrets.cookie));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'session-secret',
+  secret: config.secrets.session,
   resave: true,
   saveUninitialized: true,
   store: new RedisStore({
-    url: process.env.REDIS_URL || 'redis://192.168.99.100:6379',
-    db: 1
+    url: config.redis.uri
   })
 }));
+
 app.use(require('flash')());
 
 // Persistent
-require('./db')(app);
+require('./db')(app, config);
 
 // passport settings
 require('./passport')(app);
