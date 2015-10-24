@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 
 var app = express();
+var config = require('../config/environment')(app.get('env'));
 
 app.locals.title = 'blog-express';
 
