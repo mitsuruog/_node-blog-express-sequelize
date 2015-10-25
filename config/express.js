@@ -9,7 +9,10 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 
 var app = express();
-var config = require('../config/environment')(app.get('env'));
+
+require('dotenv').config({
+  path: 'config/environment/.env.' + app.get('env')
+});
 
 app.locals.title = 'blog-express';
 
@@ -25,21 +28,21 @@ app.set('x-powered-by', false);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser(config.secrets.cookie));
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(session({
-  secret: config.secrets.session,
+  secret: process.env.SESSION_SECRET,
   resave: true,
   saveUninitialized: true,
   store: new RedisStore({
-    url: config.redis.uri
+    url: process.env.REDIS_URL
   })
 }));
 
 app.use(require('flash')());
 
 // Persistent
-require('./db')(app, config);
+require('./db')(app);
 
 // passport settings
 require('./passport')(app);
