@@ -17,6 +17,9 @@ app.locals.title = 'blog-express';
 app.set('views', path.join(__dirname, '../app/views'));
 app.set('view engine', 'jade');
 
+// responseにx-powered-byヘッダーを出力しないようにする
+app.set('x-powered-by', false);
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
