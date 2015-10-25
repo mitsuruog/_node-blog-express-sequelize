@@ -28,3 +28,6 @@ build/Release
 node_modules
 
 bower_components
+
+config/environment/**
+!config/environment/.env.environment.sample
