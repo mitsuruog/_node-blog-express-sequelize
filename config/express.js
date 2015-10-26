@@ -55,11 +55,7 @@ app.use(passport.session());
 require('./routes')(app);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+require('./middlewares/notFoundHandler')(app);
 
 // error handlers
 require('./middlewares/errorHandler')(app);
