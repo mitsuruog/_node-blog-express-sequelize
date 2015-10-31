@@ -2,6 +2,9 @@
   "name": "node-sample-blog",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "4.2.1"
+  },
   "scripts": {
     "start": "node ./bin/www",
     "postinstall": "bower install",
