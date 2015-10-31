@@ -1,0 +1,15 @@
+# Some Secrets
+secret:
+  session: session-secret
+  cookie: cookie-secret
+
+# MongoDB connection options
+mongodb:
+  uri: mongodb://192.168.99.100:27017/blog
+
+# Redis connection options
+redis:
+  uri: redis://192.168.99.100:6379
+
+# Should we populate the DB with sample data?
+seedDb: true
