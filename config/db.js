@@ -2,9 +2,9 @@
 
 var mongoose = require('mongoose');
 
-module.exports = function(app) {
+module.exports = function(app, config) {
 
-  mongoose.connect(process.env.MONGOLAB_URI, {
+  mongoose.connect(config.mongodb.uri, {
     db: {
       safe: true
     }

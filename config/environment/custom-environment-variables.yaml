@@ -1,0 +1,12 @@
+# Some Secrets
+secret:
+  session: SESSION_SECRET
+  cookie: COOKIE_SECRET
+
+# MongoDB connection options
+mongodb:
+  uri: MONGOLAB_URI
+
+# Redis connection options
+redis:
+  uri: REDIS_URL

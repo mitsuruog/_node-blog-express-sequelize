@@ -8,11 +8,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 
-var app = express();
+// [MEMO] デフォルトの読み込みパスが./configなので、NODE_CONFIG_DIRを上書きする
+process.env.NODE_CONFIG_DIR = './config/environment/';
+var config = require('config');
 
-require('dotenv').config({
-  path: 'config/environment/.env.' + app.get('env')
-});
+var app = express();
 
 app.locals.title = 'blog-express';
 
@@ -28,21 +28,21 @@ app.set('x-powered-by', false);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(cookieParser(config.secret.cookie));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: config.secret.session,
   resave: true,
   saveUninitialized: true,
   store: new RedisStore({
-    url: process.env.REDIS_URL
+    url: config.redis.uri
   })
 }));
 
 app.use(require('flash')());
 
 // Persistent
-require('./db')(app);
+require('./db')(app, config);
 
 // passport settings
 require('./passport')(app);
