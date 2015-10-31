@@ -8,6 +8,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 
+// [MEMO] デフォルトの読み込みパスが./configなので、NODE_CONFIG_DIRを上書きする
+process.env.NODE_CONFIG_DIR = './config/environment/';
 var config = require('config');
 
 var app = express();
