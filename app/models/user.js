@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   return sequelize.define('User', {
     email: {
       type: DataTypes.STRING,
-      primaryKey: true,
+      unique: true,
       get() {
         return this.getDataValue('email');
       },
