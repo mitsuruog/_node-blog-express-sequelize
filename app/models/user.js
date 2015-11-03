@@ -30,6 +30,12 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: true
     }
   }, {
+    instanceMethods: {
+      authenticate: function(password) {
+        // TODO 本当はパスワードハッシュ化したほうがいいよ。。。
+        return this.password === password;
+      }
+    },
     underscored: true,
     freezeTableName: true
   });
