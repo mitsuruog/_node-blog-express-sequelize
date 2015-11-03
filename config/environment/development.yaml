@@ -3,9 +3,9 @@ secret:
   session: session-secret
   cookie: cookie-secret
 
-# MongoDB connection options
-mongodb:
-  uri: mongodb://192.168.99.100:27017/blog
+# postgres connection options
+postgres:
+  uri: postgres://postgres:@192.168.99.100:5432/blog
 
 # Redis connection options
 redis:
