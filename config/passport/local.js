@@ -1,15 +1,15 @@
-var mongoose = require('mongoose');
 var LocalStrategy = require('passport-local').Strategy;
-var User = mongoose.model('User');
+var db = require('../../config/db');
 
 module.exports = new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password'
 }, (email, password, done) => {
-  User.findOne({
-      email: email
+  db.User.findOne({
+      where: {
+        email: email
+      }
     })
-    .exec()
     .then((user) => {
       if (!user || !user.authenticate(password)) {
         return done(null, null, 'Invalid email or password');

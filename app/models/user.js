@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   return sequelize.define('User', {
     email: {
       type: DataTypes.STRING,
-      primaryKey: true,
+      unique: true,
       get() {
         return this.getDataValue('email');
       },
@@ -30,6 +30,12 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: true
     }
   }, {
+    instanceMethods: {
+      authenticate: function(password) {
+        // TODO 本当はパスワードハッシュ化したほうがいいよ。。。
+        return this.password === password;
+      }
+    },
     underscored: true,
     freezeTableName: true
   });
