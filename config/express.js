@@ -41,9 +41,6 @@ app.use(session({
 
 app.use(require('flash')());
 
-// Persistent
-require('./db')(app, config);
-
 // passport settings
 require('./passport')(app);
 
