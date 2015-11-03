@@ -1,18 +1,16 @@
 var express = require('express');
 var auth = require('../../config/middlewares/authorization');
-var Article = require('../models/article');
+var db = require('../../config/db');
 
 var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  Article.find({
-      published: true
+  db.Article.findAll({
+      where: {
+        published: true
+      }
     })
-    .sort({
-      _id: -1
-    })
-    .exec()
     .then((articles) => {
       res.render('index', {
         articles: articles
