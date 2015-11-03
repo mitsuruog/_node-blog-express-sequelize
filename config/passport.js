@@ -1,7 +1,6 @@
 
 var passport = require('passport');
-var mongoose = require('mongoose');
-var User = require('../app/models/user');
+var db = require('../config/db');
 var local = require('./passport/local');
 
 module.exports = () => {
@@ -12,7 +11,7 @@ module.exports = () => {
   });
 
   passport.deserializeUser((id, done) => {
-    User.findById(id).exec((err, user) => {
+    db.User.findById(id).then((err, user) => {
       done(err, user)
     });
   });
