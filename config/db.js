@@ -1,21 +1,30 @@
-'use strict';
+var fs = require('fs');
+var path = require('path');
 
-var mongoose = require('mongoose');
+var config = require('config');
+var Sequelize = require('sequelize');
+var modelPath = path.join(__dirname, '../app/models');
+var db = {};
 
-module.exports = function(app, config) {
+var sequelize = new Sequelize(config.postgres.uri, {
+  dialect: 'postgres',
+  omitNull: true
+});
 
-  mongoose.connect(config.mongodb.uri, {
-    db: {
-      safe: true
-    }
+// Import models
+fs.readdirSync(modelPath)
+  .forEach(function(file) {
+    var model = sequelize.import(path.join(modelPath, file));
+    db[model.name] = model;
   });
 
-  app.use(function(res, req, next) {
-    // サーバー側でSessionを見て管理者判定する
-    if (req.session && req.session.admin) {
-      app.locals.admin = true;
-    }
-    next();
-  });
+Object.keys(db).forEach((modelName) => {
+  if ('associate' in db[modelName]) {
+    db[modelName].associate(db);
+  }
+});
 
-}
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+module.exports = db;
