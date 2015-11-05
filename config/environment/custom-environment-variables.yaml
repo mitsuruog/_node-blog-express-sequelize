@@ -3,9 +3,9 @@ secret:
   session: SESSION_SECRET
   cookie: COOKIE_SECRET
 
-# MongoDB connection options
-mongodb:
-  uri: MONGOLAB_URI
+# postgres connection options
+postgres:
+  uri: DATABASE_URL
 
 # Redis connection options
 redis:
