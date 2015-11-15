@@ -1,6 +1,6 @@
 'use strict';
 
-var Article = require('../../models/article');
+var db = require('../../../config/db');
 
 exports.create = function(req, res, next) {
 
@@ -10,7 +10,7 @@ exports.create = function(req, res, next) {
     text: req.body.text,
   };
 
-  Article.create(newArticle).then((article) => {
+  db.Article.create(newArticle).then((article) => {
     // TODO errorで正常系のメッセージ投げるの違和感あり・・・
     res.render('post', {
       error: 'Artical was added. Publish it on Admin page.'
@@ -22,13 +22,16 @@ exports.create = function(req, res, next) {
 }
 
 exports.show = function(req, res, next) {
-  Article.findOne({
-      slug: req.params.slug
+  db.Article.findOne({
+      where: {
+        slug: req.params.slug
+      }
     })
-    .exec()
     .then((article) => {
       if (!article.published) return res.send(404);
-      res.render('article', article);
+      res.render('article', {
+        article: article
+      });
     }, (err) => {
       return next(err);
     });
