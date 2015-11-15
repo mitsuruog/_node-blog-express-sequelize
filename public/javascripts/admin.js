@@ -24,7 +24,7 @@ console.log('I am admin :).');
     function togglePublishingState(article) {
       $http({
         method: 'PUT',
-        url: '/api/articles/' + article._id
+        url: '/api/articles/' + article.id
       }).then(function(response){
         if(response && response.data) {
           var index = $scope.articles.indexOf(article);
@@ -38,7 +38,7 @@ console.log('I am admin :).');
     function removeArticle(article) {
       $http({
         method: 'DELETE',
-        url: '/api/articles/' + article._id
+        url: '/api/articles/' + article.id
       }).then(function(response){
         var index = $scope.articles.indexOf(article);
         $scope.articles.splice(index, 1);

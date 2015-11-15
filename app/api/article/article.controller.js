@@ -1,13 +1,11 @@
 'use strict';
 
-var Article = require('../../models/article');
+var db = require('../../../config/db');
 
 exports.findAll = function(req, res, next) {
-  Article.find({})
-    .sort({
-      _id: -1
+  db.Article.findAll({
+      order: 'id DESC'
     })
-    .exec()
     .then((articles) => {
       res.json({
         articles: articles
@@ -19,29 +17,32 @@ exports.findAll = function(req, res, next) {
 
 exports.update = function(req, res, next) {
 
-  Article.findById(req.params.id)
-    .exec()
+  db.Article.findById(req.params.id)
     .then((article) => {
-      if (!article) return res.sendStatus(404);
       // 記事の公開フラグを変更する
       article.published = !article.published;
       return article;
     })
     .then((article) => {
-      article.save().then(() => {
-        res.json({
-          article: article
-        });
+      return article.save();
+    })
+    .then((article) => {
+      res.json({
+        article: article
       });
-    }, (err) => {
+    })
+    .catch((err) => {
       return next(err);
     });
 
 }
 
 exports.remove = function(req, res, next) {
-  Article.findByIdAndRemove(req.params.id)
-    .exec()
+  db.Article.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
     .then(() => {
       res.sendStatus(204);
     }, (err) => {
