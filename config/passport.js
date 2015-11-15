@@ -11,8 +11,10 @@ module.exports = () => {
   });
 
   passport.deserializeUser((id, done) => {
-    db.User.findById(id).then((err, user) => {
-      done(err, user)
+    db.User.findById(id).then((user) => {
+      done(null, user);
+    }, (err) => {
+      done(err, null);
     });
   });
 
