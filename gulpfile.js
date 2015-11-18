@@ -26,9 +26,14 @@ gulp.task('power-assert', () => {
 });
 
 gulp.task('jscs', () => {
-  gulp.src(srcDir)
-    .pipe(jscs())
-    .pipe(jscs.reporter());
+  gulp.src(srcDir, {
+      base: './',
+    })
+    .pipe(jscs({
+      fix: true,
+    }))
+    .pipe(jscs.reporter())
+    .pipe(gulp.dest('.'));
 });
 
 gulp.task('lint', () => {
