@@ -4,16 +4,16 @@ var db = require('../../../config/db');
 
 exports.findAll = function(req, res, next) {
   db.Article.findAll({
-      order: 'id DESC'
+      order: 'id DESC',
     })
     .then((articles) => {
       res.json({
-        articles: articles
+        articles: articles,
       });
     }, (err) => {
       return next(err);
     });
-}
+};
 
 exports.update = function(req, res, next) {
 
@@ -28,24 +28,24 @@ exports.update = function(req, res, next) {
     })
     .then((article) => {
       res.json({
-        article: article
+        article: article,
       });
     })
     .catch((err) => {
       return next(err);
     });
 
-}
+};
 
 exports.remove = function(req, res, next) {
   db.Article.destroy({
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     })
     .then(() => {
       res.sendStatus(204);
     }, (err) => {
       return next(err);
     });
-}
+};

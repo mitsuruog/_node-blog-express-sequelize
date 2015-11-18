@@ -16,6 +16,7 @@ router.post('/login', (req, res, next) => {
       req.flash('error', 'Something went wrong, please try again.');
       return res.redirect('/auth/login');
     }
+
     req.logIn(user, (err) => {
       if (err) return next(err);
       return res.redirect('/admin');

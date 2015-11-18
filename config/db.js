@@ -8,7 +8,7 @@ var db = {};
 
 var sequelize = new Sequelize(config.postgres.uri, {
   dialect: 'postgres',
-  omitNull: true
+  omitNull: true,
 });
 
 // Import models

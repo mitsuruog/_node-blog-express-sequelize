@@ -12,10 +12,10 @@ console.log('I am admin :).');
 
     // 初期化
     getAllArticles().then(function(response) {
-      if(response && response.data) {
+      if (response && response.data) {
         $scope.articles = response.data.articles;
       } else {
-         console.log('Invalid response data. -> ' + response);
+        console.log('Invalid response data. -> ' + response);
       }
     });
 
@@ -24,13 +24,13 @@ console.log('I am admin :).');
     function togglePublishingState(article) {
       $http({
         method: 'PUT',
-        url: '/api/articles/' + article.id
-      }).then(function(response){
-        if(response && response.data) {
+        url: '/api/articles/' + article.id,
+      }).then(function(response) {
+        if (response && response.data) {
           var index = $scope.articles.indexOf(article);
           $scope.articles[index] = response.data.article;
         } else {
-           console.log('Invalid response data. -> ' + response);
+          console.log('Invalid response data. -> ' + response);
         }
       });
     }
@@ -38,8 +38,8 @@ console.log('I am admin :).');
     function removeArticle(article) {
       $http({
         method: 'DELETE',
-        url: '/api/articles/' + article.id
-      }).then(function(response){
+        url: '/api/articles/' + article.id,
+      }).then(function(response) {
         var index = $scope.articles.indexOf(article);
         $scope.articles.splice(index, 1);
       });
@@ -47,7 +47,7 @@ console.log('I am admin :).');
 
     function getAllArticles() {
       return $http({
-        url: '/api/articles'
+        url: '/api/articles',
       });
     }
 

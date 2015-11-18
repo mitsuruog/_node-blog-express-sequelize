@@ -21,4 +21,4 @@ module.exports = () => {
   // use these strategies
   passport.use(local);
 
-}
+};

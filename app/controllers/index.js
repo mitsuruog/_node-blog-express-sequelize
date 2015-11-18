@@ -8,12 +8,12 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   db.Article.findAll({
       where: {
-        published: true
-      }
+        published: true,
+      },
     })
     .then((articles) => {
       res.render('index', {
-        articles: articles
+        articles: articles,
       });
     }, (err) => {
       return next(err);

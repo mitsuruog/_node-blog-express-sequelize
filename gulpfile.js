@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var del = require('del');
 var espower = require('gulp-espower');
-var mocha = require("gulp-mocha");
+var mocha = require('gulp-mocha');
 var jscs = require('gulp-jscs');
 var eslint = require('gulp-eslint');
 
@@ -15,7 +15,7 @@ var srcDir = [
 
 gulp.task('clean:test', () => {
   return del([
-    './.tmp/**/*'
+    './.tmp/**/*',
   ]);
 });
 
@@ -46,7 +46,7 @@ gulp.task('lint', () => {
 gulp.task('test', ['power-assert'], () => {
   gulp.src('./.tmp/**/*.js')
     .pipe(mocha({
-      reporter: 'nyan'
+      reporter: 'nyan',
     }));
 });
 

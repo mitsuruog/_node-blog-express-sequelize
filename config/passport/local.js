@@ -3,12 +3,12 @@ var db = require('../../config/db');
 
 module.exports = new LocalStrategy({
   usernameField: 'email',
-  passwordField: 'password'
+  passwordField: 'password',
 }, (email, password, done) => {
   db.User.findOne({
       where: {
-        email: email
-      }
+        email: email,
+      },
     })
     .then((user) => {
       if (!user || !user.authenticate(password)) {

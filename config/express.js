@@ -35,8 +35,8 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   store: new RedisStore({
-    url: config.redis.uri
-  })
+    url: config.redis.uri,
+  }),
 }));
 
 app.use(require('flash')());
